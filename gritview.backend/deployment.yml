@@ -1,0 +1,24 @@
+# [START kubernetes_deployment]
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gritview-backend
+  labels:
+    type: endpoints-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: gritview-backend
+  template:
+    metadata:
+      labels:
+        app: gritview-backend
+    spec:
+      containers:
+      - name: gritview-backend
+        image: gcr.io/PROJECT_ID/IMAGE:TAG
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+# [END kubernetes_deployment]

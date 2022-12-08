@@ -1,0 +1,19 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: gritview-backend-certificate
+  namespace: default
+spec:
+  secretName: gritview-backend-certificate
+  issuerRef:
+    name: letsencrypt-prod-backend
+    kind: ClusterIssuer
+  commonName: api.gritview.io
+  dnsNames:
+    - api.gritview.io
+  acme:
+    config:
+      - http01:
+          ingress: gritview-ingress
+        domains:
+          - api.gritview.io
